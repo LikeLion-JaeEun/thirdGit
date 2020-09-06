@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block contents%}
+
+<div class="container">
+
+    <h1>Login</h1>
+
+    <form method="POST" action="{%url 'login'%}">
+        {%csrf_token%}
+        Username:
+        <br>
+        <input name="username" type="text" value="">
+        <br>
+        Password:
+        <br>
+        <input name="passwoed" type="password" value="">
+    </form>
+
+</div>
+
+{%endblock%}

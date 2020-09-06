@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block contents%}
+
+<h1>Sign up!</h1>
+<form method="POST" action="{%url 'signup'%}">
+
+    {%csrf_token%}
+    <!--위에 이건 난수를 발생해서 정보를 보호하는거래-->
+
+    username:
+    <br>
+    <input name="username" type="text" value="">
+    <br>
+    Password:
+    <br>
+    <input name="password1" type="password" value="">
+    <br>
+    Confirm Password:
+    <br>
+    <input name="password2" type="password" value="">
+    <br>
+    <br>
+    <input class="btn btn-primary" type="submit" value="Sign Up!">
+    
+</form>
+{%endblock%}
