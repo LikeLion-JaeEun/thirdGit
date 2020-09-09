@@ -3,6 +3,8 @@ from .models import Blog
 from django.utils import timezone
 #페이지생성 import
 from django.core.paginator import Paginator
+#form import
+from .form import BlogPost
 
 def blog(request):
     blogs = Blog.objects
@@ -26,3 +28,18 @@ def create(request):
     blog.pub_date = timezone.datetime.now()
     blog.save()
     return redirect('/blog/'+str(blog.id))
+
+def blogpost(request):
+    #1. 입력된 내용을 처리하는 기능 -> POST
+    if request.method == 'POST':
+        form = BlogPost(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.pub_date = timezone.now()
+            post.save()
+            return redirect('blog')
+            
+    #2. 빈 페이지를 띄워주는 기능 -> GET
+    else:
+        form = BlogPost()
+        return render(request, 'new.html', {'form':form})
